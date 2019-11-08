@@ -11,18 +11,26 @@ const CharacterWrapper = styled.div`
 `
 
 const Characters = () => {
-
+const [pageNumber, setPageNumber] = useState(1);
 const [characterData, setCharacterData] = useState([]);
 
+const advancePageNumber = function(){
+  if(pageNumber < 1) {
+    setPageNumber(1);
+  }
+  setPageNumber(pageNumber + 1);
+  console.log(pageNumber);
+}
+
   useEffect(() => {
-    axios.get(`https://swapi.co/api/people/?page1`)
+    axios.get(`https://swapi.co/api/people/?page=${pageNumber}`)
     .then(response => {
       setCharacterData(response.data.results)
     })
     .catch( error => {
       console.log("No Data Fetched", error)
     })
-  },[]) 
+  },[pageNumber]); 
 
   return (
     <CharacterWrapper>
@@ -35,6 +43,7 @@ const [characterData, setCharacterData] = useState([]);
           />
         );
       })}
+      <button onClick={advancePageNumber}>Next Page</button>
     </CharacterWrapper> 
   )
 }
