@@ -18,7 +18,6 @@ const [characterData, setCharacterData] = useState([]);
     axios.get(`https://swapi.co/api/people/?page1`)
     .then(response => {
       setCharacterData(response.data.results)
-      console.log(response.data.results);
     })
     .catch( error => {
       console.log("No Data Fetched", error)
