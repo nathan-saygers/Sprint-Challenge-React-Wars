@@ -7,6 +7,7 @@ const CharacterWrapper = styled.div`
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
 `
 
 const Characters = () => {
